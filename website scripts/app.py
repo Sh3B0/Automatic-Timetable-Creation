@@ -13,6 +13,11 @@ def home():
 def about():
     return render_template('about.html', title="About")
 
+
+@app.route("/timetable")
+def timetable():
+    return render_template('about.html', title="About")
+
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
