@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #a9b7c6;}
+.s1 { color: #cc7832;}
+.s2 { color: #6897bb;}
+.s3 { color: #808080;}
+.s4 { color: #6a8759;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">arr = []</span>
+<span class="s1">for </span><span class="s0">i </span><span class="s1">in </span><span class="s0">range ( </span><span class="s2">5 </span><span class="s0">) :</span>
+    <span class="s0">arr.append([])</span>
+    <span class="s1">for </span><span class="s0">j </span><span class="s1">in </span><span class="s0">range (</span><span class="s2">8</span><span class="s0">) :</span>
+        <span class="s0">arr[i].append([])</span>
+
+
+<span class="s3">#print (arr)</span>
+
+
+<span class="s0">time_to_slots = { </span><span class="s4">&quot;9:00&quot; </span><span class="s0">: </span><span class="s2">0 </span><span class="s1">, </span><span class="s4">&quot;10:40&quot; </span><span class="s0">: </span><span class="s2">1 </span><span class="s1">, </span><span class="s4">&quot;12:40&quot; </span><span class="s0">: </span><span class="s2">2 </span><span class="s1">, </span><span class="s4">&quot;14:20&quot; </span><span class="s0">: </span><span class="s2">3 </span><span class="s0">}</span>
+<span class="s0">days_to_slot = { </span><span class="s4">&quot;Mon&quot; </span><span class="s0">: </span><span class="s2">0 </span><span class="s1">, </span><span class="s4">&quot;Tus&quot; </span><span class="s0">: </span><span class="s2">1 </span><span class="s1">, </span><span class="s4">&quot;Wed&quot; </span><span class="s0">: </span><span class="s2">2 </span><span class="s1">, </span><span class="s4">&quot;Thr&quot; </span><span class="s0">: </span><span class="s2">3 </span><span class="s1">, </span><span class="s4">&quot;Fri&quot; </span><span class="s0">: </span><span class="s2">4 </span><span class="s0">}</span>
+<span class="s0">slot_to_time = {  </span><span class="s2">0 </span><span class="s0">: </span><span class="s4">&quot;9:00&quot; </span><span class="s1">, </span><span class="s2">1 </span><span class="s0">:</span><span class="s4">&quot;10:40&quot; </span><span class="s1">, </span><span class="s2">2 </span><span class="s0">: </span><span class="s4">&quot;12:40&quot; </span><span class="s1">, </span><span class="s2">3 </span><span class="s0">: </span><span class="s4">&quot;14:20&quot; </span><span class="s0">}</span>
+<span class="s0">slot_to_day = { </span><span class="s2">0</span><span class="s0">: </span><span class="s4">&quot;Mon&quot;</span><span class="s1">, </span><span class="s2">1 </span><span class="s0">: </span><span class="s4">&quot;Tus&quot; </span><span class="s1">, </span><span class="s2">2 </span><span class="s0">: </span><span class="s4">&quot;Wed&quot; </span><span class="s1">, </span><span class="s2">3 </span><span class="s0">: </span><span class="s4">&quot;Thr&quot; </span><span class="s1">, </span><span class="s2">4 </span><span class="s0">: </span><span class="s4">&quot;Fri&quot;</span><span class="s0">}</span>
+<span class="s3">#size of the room, lecturer, time slot, day of the week, subjects, number of the study group</span>
+<span class="s0">Classes = [ [</span><span class="s4">&quot;Big&quot; </span><span class="s1">, </span><span class="s4">&quot;Shilov&quot; </span><span class="s1">, </span><span class="s4">&quot;10:40&quot; </span><span class="s1">, </span><span class="s4">&quot;Tus&quot; </span><span class="s1">, </span><span class="s4">&quot;DE&quot; </span><span class="s1">, </span><span class="s4">&quot;BS-19&quot; </span><span class="s1">, </span><span class="s4">&quot;lec&quot; </span><span class="s0">]  </span><span class="s1">, </span><span class="s0">[</span><span class="s4">&quot;Big&quot; </span><span class="s1">, </span><span class="s4">&quot;Babrov&quot; </span><span class="s1">, </span><span class="s4">&quot;10:40&quot; </span><span class="s1">, </span><span class="s4">&quot;Mon&quot; </span><span class="s1">, </span><span class="s4">&quot;FSE&quot; </span><span class="s1">, </span><span class="s4">&quot;BS-19&quot; </span><span class="s1">, </span><span class="s4">&quot;lec&quot;  </span><span class="s0">] </span><span class="s1">,</span>
+            <span class="s0">[</span><span class="s4">&quot;Big&quot; </span><span class="s1">, </span><span class="s4">&quot;Babrov&quot; </span><span class="s1">, </span><span class="s4">&quot;12:40&quot; </span><span class="s1">, </span><span class="s4">&quot;Mon&quot; </span><span class="s1">, </span><span class="s4">&quot;FSE&quot; </span><span class="s1">, </span><span class="s4">&quot;BS-19&quot; </span><span class="s1">, </span><span class="s4">&quot;tut&quot;  </span><span class="s0">] </span><span class="s1">,</span><span class="s0">[</span><span class="s4">&quot;small&quot; </span><span class="s1">, </span><span class="s4">&quot;Marat&quot; </span><span class="s1">, </span><span class="s4">&quot;12:40&quot; </span><span class="s1">, </span><span class="s4">&quot;Fri&quot; </span><span class="s1">, </span><span class="s4">&quot;DE&quot; </span><span class="s1">, </span><span class="s4">&quot;BS-19&quot; </span><span class="s1">, </span><span class="s4">&quot;1&quot;   </span><span class="s0">] </span><span class="s1">,</span>
+            <span class="s0">[</span><span class="s4">&quot;small&quot; </span><span class="s1">, </span><span class="s4">&quot;Pavel&quot; </span><span class="s1">, </span><span class="s4">&quot;9:00&quot; </span><span class="s1">, </span><span class="s4">&quot;Tus&quot; </span><span class="s1">, </span><span class="s4">&quot;DE&quot; </span><span class="s1">, </span><span class="s4">&quot;BS-19&quot; </span><span class="s1">, </span><span class="s4">&quot;1&quot; </span><span class="s0">] </span><span class="s1">,</span>
+            <span class="s0">[</span><span class="s4">&quot;small&quot; </span><span class="s1">, </span><span class="s4">&quot;Pavel&quot; </span><span class="s1">, </span><span class="s4">&quot;12:40&quot; </span><span class="s1">, </span><span class="s4">&quot;Fri&quot; </span><span class="s1">, </span><span class="s4">&quot;DE&quot; </span><span class="s1">, </span><span class="s4">&quot;BS-19&quot; </span><span class="s1">, </span><span class="s4">&quot;2&quot; </span><span class="s0">] </span><span class="s1">, </span><span class="s0">[</span><span class="s4">&quot;small&quot; </span><span class="s1">, </span><span class="s4">&quot;Marat&quot; </span><span class="s1">, </span><span class="s4">&quot;14:20&quot; </span><span class="s1">, </span><span class="s4">&quot;Fri&quot; </span><span class="s1">, </span><span class="s4">&quot;DE&quot; </span><span class="s1">, </span><span class="s4">&quot;BS-19&quot; </span><span class="s1">, </span><span class="s4">&quot;2&quot; </span><span class="s0">]]</span>
+
+
+
+<span class="s1">def </span><span class="s0">disp ( A ) :</span>
+    <span class="s1">for </span><span class="s0">i </span><span class="s1">in </span><span class="s0">A:</span>
+        <span class="s1">for </span><span class="s0">j </span><span class="s1">in </span><span class="s0">i :</span>
+            <span class="s0">print ( j  </span><span class="s1">, </span><span class="s0">end = </span><span class="s4">&quot; &gt; &quot; </span><span class="s0">)</span>
+        <span class="s0">print (</span><span class="s4">&quot;&quot;</span><span class="s0">)</span>
+
+<span class="s3">#check the oderd of lec &gt; tut &gt; lab</span>
+<span class="s1">def </span><span class="s0">ok ( A </span><span class="s1">, </span><span class="s0">cl  </span><span class="s1">, </span><span class="s0">d </span><span class="s1">, </span><span class="s0">t ) :</span>
+    <span class="s1">return True</span>
+
+<span class="s1">def </span><span class="s0">preferable ( A </span><span class="s1">, </span><span class="s0">cl ) :</span>
+    <span class="s1">if </span><span class="s0">cl[</span><span class="s2">6</span><span class="s0">] == </span><span class="s4">&quot;lec&quot; </span><span class="s1">or </span><span class="s0">cl[</span><span class="s2">6</span><span class="s0">] == </span><span class="s4">&quot;tut&quot; </span><span class="s0">:</span>
+        <span class="s1">for </span><span class="s0">x </span><span class="s1">in </span><span class="s0">A[days_to_slot[cl[</span><span class="s2">3</span><span class="s0">]] ][time_to_slots[cl[</span><span class="s2">2</span><span class="s0">]]] :</span>
+            <span class="s1">if </span><span class="s0">cl[</span><span class="s2">5</span><span class="s0">] </span><span class="s1">in </span><span class="s0">x  </span><span class="s1">or </span><span class="s0">cl[</span><span class="s2">1</span><span class="s0">] </span><span class="s1">in </span><span class="s0">x :</span>
+                <span class="s1">return False</span>
+    <span class="s1">else </span><span class="s0">:</span>
+        <span class="s1">for </span><span class="s0">x </span><span class="s1">in </span><span class="s0">A[days_to_slot[cl[</span><span class="s2">3</span><span class="s0">]] ][time_to_slots[cl[</span><span class="s2">2</span><span class="s0">]]] :</span>
+            <span class="s1">if </span><span class="s0">( cl[</span><span class="s2">5</span><span class="s0">] </span><span class="s1">in </span><span class="s0">x </span><span class="s1">and </span><span class="s0">cl[</span><span class="s2">6</span><span class="s0">] </span><span class="s1">in </span><span class="s0">x ) </span><span class="s1">or </span><span class="s0">cl[</span><span class="s2">1</span><span class="s0">] </span><span class="s1">in </span><span class="s0">x :</span>
+                <span class="s1">return False</span>
+    <span class="s1">return True</span>
+
+<span class="s1">def </span><span class="s0">solve( ar </span><span class="s1">, </span><span class="s0">num </span><span class="s1">, </span><span class="s0">day </span><span class="s1">, </span><span class="s0">time ) :</span>
+
+    <span class="s1">if </span><span class="s0">time == </span><span class="s2">4 </span><span class="s0">:</span>
+        <span class="s0">day += </span><span class="s2">1</span>
+        <span class="s0">time = </span><span class="s2">0</span>
+    <span class="s1">if </span><span class="s0">num == len(Classes) :</span>
+        <span class="s0">disp(ar)</span>
+        <span class="s0">print(</span><span class="s4">&quot;&quot;</span><span class="s0">)</span>
+        <span class="s0">print(</span><span class="s4">&quot; &gt;&gt; &quot;</span><span class="s0">)</span>
+        <span class="s0">print(</span><span class="s4">&quot;&quot;</span><span class="s0">)</span>
+        <span class="s1">return</span>
+    <span class="s1">if </span><span class="s0">day == </span><span class="s2">3 </span><span class="s0">:</span>
+        <span class="s0">day = </span><span class="s2">0</span>
+        <span class="s0">time = </span><span class="s2">0</span>
+    <span class="s3"># check if the preferable date is valid</span>
+    <span class="s3">#print (Classes[num] ,Classes[num][3] , Classes[num][2])</span>
+    <span class="s1">if </span><span class="s0">ok( ar </span><span class="s1">, </span><span class="s0">Classes[num] </span><span class="s1">, </span><span class="s0">days_to_slot[Classes[num][</span><span class="s2">3</span><span class="s0">]]  </span><span class="s1">, </span><span class="s0">time_to_slots[Classes[num][</span><span class="s2">2</span><span class="s0">]) :</span>
+        <span class="s1">if </span><span class="s0">preferable ( ar </span><span class="s1">, </span><span class="s0">Classes[num] ) :</span>
+    <span class="s0">ar [days_to_slot[Classes[num][</span><span class="s2">3</span><span class="s0">]]][time_to_slots[Classes[num][</span><span class="s2">2</span><span class="s0">]]].append( Classes[num])</span>
+        <span class="s0">solve( ar </span><span class="s1">, </span><span class="s0">num+</span><span class="s2">1 </span><span class="s1">, </span><span class="s0">day </span><span class="s1">, </span><span class="s0">time )</span>
+        <span class="s1">return</span>
+    <span class="s1">while not </span><span class="s0">ok ( arr </span><span class="s1">, </span><span class="s0">Classes[num] </span><span class="s1">, </span><span class="s0">day </span><span class="s1">, </span><span class="s0">time )  :</span>
+        <span class="s0">time += </span><span class="s2">1</span>
+        <span class="s1">if </span><span class="s0">time == </span><span class="s2">4 </span><span class="s0">:</span>
+            <span class="s0">day += </span><span class="s2">1</span>
+            <span class="s0">time = </span><span class="s2">0</span>
+        <span class="s1">if </span><span class="s0">day == </span><span class="s2">3 </span><span class="s0">:</span>
+            <span class="s1">return</span>
+    <span class="s3">#put the date and time of the lectures in the as they are in the table</span>
+    <span class="s0">Classes[num][</span><span class="s2">3</span><span class="s0">] = slot_to_day[ day ]</span>
+    <span class="s0">Classes[num][</span><span class="s2">2</span><span class="s0">] = slot_to_time[ time ]</span>
+    <span class="s0">ar [day][time].append( Classes[num] )</span>
+    <span class="s0">solve( ar </span><span class="s1">, </span><span class="s0">num+</span><span class="s2">1 </span><span class="s1">, </span><span class="s0">day </span><span class="s1">, </span><span class="s0">time+</span><span class="s2">1 </span><span class="s0">)</span>
+    <span class="s1">return</span>
+
+<span class="s0">solve ( arr </span><span class="s1">, </span><span class="s2">0 </span><span class="s1">, </span><span class="s2">0 </span><span class="s1">, </span><span class="s2">0 </span><span class="s0">)</span>
+</pre>
+</body>
+</html>
