@@ -1,3 +1,4 @@
+import csv
 arr = []
 for i in range ( 5 ) :
     arr.append([])
@@ -15,8 +16,8 @@ slot_to_day = { 0: "Mon", 1 : "Tus" , 2 : "Wed" , 3 : "Thr" , 4 : "Fri"}
 #size of the room, lecturer, time slot, day of the week, subjects, number of the study group
 Classes = [ ["Big" , "Shilov" , "10:40" , "Tus" , "DE" , "BS-19" , "lec" ]  , ["Big" , "Babrov" , "10:40" , "Mon" , "FSE" , "BS-19" , "lec"  ] ,
             ["Big" , "Babrov" , "12:40" , "Mon" , "FSE" , "BS-19" , "tut"  ] , ["small" , "Marat" , "12:40" , "Tus" , "DE" , "BS-19" , "tut"   ] ,
-            ["small" , "Marat" , "12:40" , "Fri" , "DE" , "BS-19" , "1"   ] , ["small" , "Pavel" , "9:00" , "Tus" , "FSE" , "BS-19" , "1" ] ,
-            ["small" , "Pavel" , "12:40" , "Fri" , "FSE" , "BS-19" , "2" ] , ["small" , "Marat" , "14:20" , "Fri" , "DE" , "BS-19" , "2" ]]
+            ["small" , "Marat" , "12:40" , "Fri" , "DE" , "BS-19-01" , "lab"   ] , ["small" , "Pavel" , "9:00" , "Tus" , "FSE" , "BS-19-01" , "lab" ] ,
+            ["small" , "Pavel" , "12:40" , "Fri" , "FSE" , "BS-19-02" , "lab" ] , ["small" , "Marat" , "14:20" , "Fri" , "DE" , "BS-19-02" , "lab" ]]
 
 
 
@@ -96,3 +97,48 @@ def solve( ar , num , day , time ) :
     return
 
 solve ( arr , 0 , 0 , 0 )
+
+def print_to_file(year, group):
+    with open(group+".csv", 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',')
+
+        # printing header
+        writer.writerow(["Time slots",\
+            "Monday", "Teacher", "Room",\
+            "Tuesday", "Teacher", "Room",\
+            "Wednesday", "Teacher", "Room",\
+            "Thursday", "Teacher", "Room",\
+            "Friday", "Teacher", "Room"
+        ])
+
+        # checking it the group for which we print schedule should attend the class
+        def for_this_group(expected_year, expected_group, actual_group):
+            return actual_group == expected_group or actual_group == expected_year
+
+        for t in range(4): # iterating over timeslots
+            # adding timestamp
+            timeslot = [slot_to_time[t]]
+            for d in range(5): # iterating over days
+                lecture = arr[d][t]
+                if len(lecture) == 0: # if timeslot is empty - skip it
+                    for i in range(3):
+                        timeslot.append(None)
+                    continue
+                group_is_free = True
+                for lec in lecture:
+                    if for_this_group(year, group, lec[5]):
+                        # add class name
+                        timeslot.append(lec[4] + "(" + lec[6] + ")")
+                        # add professor name
+                        timeslot.append(lec[1])
+                        # add room
+                        timeslot.append(lec[0])
+                        print(timeslot)
+                        group_is_free = False
+                if group_is_free:
+                    for i in range(3):
+                        timeslot.append(None)
+            writer.writerow(timeslot)
+
+print_to_file("BS-19", "BS-19-01")
+print_to_file("BS-19", "BS-19-02")
