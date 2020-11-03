@@ -15,8 +15,11 @@ class visualization:
 
         self.workbook = Workbook()
 
+        # these course names will appear in the table
         courses = ['BS - Year 1 (Computer Engineering)', 'BS - Year 1 (Computer Engineering)']
+        # these group names are used to fetch data for groups
         groups = [['B20-CE-01', 'B20-CE-01', 'B20-CE-01'], ['B20-CE-01', 'B20-CE-01']]
+        # these colors are used for courses
         palettes = [{'day': "00FF0000", 'main': "00FFFF00"},
                     {'day': "00FFF000", 'main': "00FF0FF0"}]
 
@@ -164,7 +167,7 @@ class visualization:
                     continue
 
                 cell = sheet.cell(row=row + index, column=column)
-                cell.value = day_data.iloc[time_slot_index, index]
+                cell.value = str(day_data.iloc[time_slot_index, index])
                 cell.fill = PatternFill("solid", fgColor=color)
 
                 # usually, pairs of cells are merged
