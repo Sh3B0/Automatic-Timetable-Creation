@@ -167,7 +167,9 @@ class visualization:
                     continue
 
                 cell = sheet.cell(row=row + index, column=column)
-                cell.value = str(day_data.iloc[time_slot_index, index])
+                cell.value = day_data.iloc[time_slot_index, index]
+                if index == 2 and str(cell.value).find('.') != -1:
+                    cell.value = int(cell.value)
                 cell.fill = PatternFill("solid", fgColor=color)
 
                 # usually, pairs of cells are merged
