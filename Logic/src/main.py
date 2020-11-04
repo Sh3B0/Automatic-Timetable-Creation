@@ -38,14 +38,14 @@
     B19-**-(01:06) (H-M)
     B18-DS-(01:02) (N-O)
     B18-SE-(01:02) (P-Q)
-    B18-SB-(01:02) (R-S)
-    B18-RO-(01:02) (T-U)
-    B17-DS-(01:02) (V-W)
-    B17-SE-(01:02) (X-Y)
-    B17-SB-(01:02) (Z-AA)
-    B17-RO-(01:02) (AB-AC)
-    M19-DS-01, M19-SE-01, M19-SB-01, M19-RO-01 (AD-AG)
-    M20-DS-01, M20-SE-01, M20-SB-01, M20-RO-01 (AH-AK)
+    B18-SB-(01) (R)
+    B18-RO-(01) (S)
+    B17-DS-(01:02) (T-U)
+    B17-SE-(01:02) (V-W)
+    B17-SB-(01) (X)
+    B17-RO-(01) (Y)
+    M19-DS-01, M19-SE-01, M19-SB-01, M19-RO-01 (Z-AC)
+    M20-DS-01, M20-SE-01, M20-SB-01, M20-RO-01 (AD-AG)
 """
 
 from activity import *
