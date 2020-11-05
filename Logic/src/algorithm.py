@@ -3,26 +3,21 @@ from globals import *
 
 def disjoint(a, b):
     """
-    :param a: 1st target
-    :param b: 2nd target
-    :return: True if given two targets are disjoint, false otherwise
+    :param a: 1st target list
+    :param b: 2nd target list
+    :return: True if given two lists are disjoint, false otherwise
     """
-    if a[0] == b[0]:
-        if (a[1] == '**' or b[1] == '**') and a[0] != 'B19':
-            res = False
-        elif a[1] == b[1]:
-            if a[2] == '**' or b[2] == '**':
-                res = False
-            elif a[2] == b[2]:
-                res = False
-            else:
-                res = True
-        else:
-            res = True
-    else:
-        res = True
-
-    return res
+    for t1 in a:
+        for t2 in b:
+            if t1[0] == t2[0]:
+                if (t1[1] == '**' or t2[1] == '**') and t1[0] != 'B19':
+                    return False
+                elif t1[1] == t2[1]:
+                    if t1[2] == '**' or t2[2] == '**':
+                        return False
+                    elif t1[2] == t2[2]:
+                        return False
+    return True
 
 
 def allocate_room(ac, p, day, slot):
@@ -112,31 +107,31 @@ def conflicts(activities, ac, p):
         con = []
         for j in activities:
             # Excluding cases where conflicts cannot happen
-            if ac == j or j.alloc == (0, 0, 0) or (ac.a_inst != j.a_inst and disjoint(ac.target, j.target)):
+            if ac == j or j.alloc == (0, 0, 0) or (ac.a_inst != j.a_inst and disjoint(ac.targets, j.targets)):
                 continue
 
             # Both activities have the same instructor but different targets
             # Day, slot cannot be the same, room can be
             # ac, j are preferably be in different days
-            elif ac.a_inst == j.a_inst and disjoint(ac.target, j.target):
+            elif ac.a_inst == j.a_inst and disjoint(ac.targets, j.targets):
                 if ac.alloc[0] == j.alloc[0] and ac.alloc[1] == j.alloc[1]:
                     if ac.alloc[2] == j.alloc[2]:
                         con.append((j, 4))
                     else:
                         con.append((j, 1))
 
-            # Both activities have the same target but different instructors
+            # Both activities have the same targets but different instructors
             # Day, slot cannot be the same, room can be
-            elif ac.a_inst != j.a_inst and (disjoint(ac.target, j.target) is False):
+            elif ac.a_inst != j.a_inst and (disjoint(ac.targets, j.targets) is False):
                 if ac.alloc[0] == j.alloc[0] and ac.alloc[1] == j.alloc[1]:
                     if ac.alloc[2] == j.alloc[2]:
                         con.append((j, 4))
                     else:
                         con.append((j, 2))
 
-            # Both activities have the same target and same instructor (Extremely rare to happen with labs)
+            # Both activities have the same targets and same instructor (Extremely rare to happen with labs)
             # Day, slot cannot be the same, room can be
-            elif ac.a_inst == j.a_inst and (disjoint(ac.target, j.target) is False):
+            elif ac.a_inst == j.a_inst and (disjoint(ac.targets, j.targets) is False):
                 if ac.alloc[0] == j.alloc[0] and ac.alloc[1] == j.alloc[1]:
                     if ac.alloc[2] == j.alloc[2]:
                         con.append((j, 4))

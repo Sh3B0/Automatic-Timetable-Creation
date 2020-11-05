@@ -3,6 +3,7 @@ from globals import *
 global_id = 0
 
 
+# Main class for activities
 class Activity:
     # activity name
     a_name = ''
@@ -17,26 +18,32 @@ class Activity:
     # If activity is lab, it should refer to tut, if activity is tut, it should refer to lec
     refers_to = -1
 
-    # targeted students, regex=(([BM]\d\d), (CE|CS|SE|RO|SB|DS|\*), (\d\d|\*))
-    target = ('', '', '')
+    # a list of targeted students, element regex=(([BM]\d\d), (CE|CS|SE|RO|SB|DS|\*), (\d\d|\*))
+    targets = []
 
     # tuple(day, slot, room): zeros mean that the activity is unallocated
     alloc = (0, 0, 0)
 
-    def __init__(self, a_name='', a_inst='', a_type=-1, target=None, refers_to=None):
+    def __init__(self, a_name='', a_inst='', a_type=-1, targets=None, refers_to=None):
+        if targets is None:
+            targets = []
         self.a_name = a_name
         self.a_inst = a_inst
         self.a_type = a_type
-        self.target = target
+        self.targets = targets
         self.refers_to = refers_to
         global global_id
         activity_by_id[global_id] = self
         global_id += 1
 
     def __str__(self):
-        return day_to_str[self.alloc[0]] + "," + slot_to_str[self.alloc[1]] + "," + self.target[0] + '-' + \
-               self.target[1] + '-' + self.target[2] + "," + self.a_name + "(" + type_to_str[self.a_type] + \
-               ")," + self.a_inst + "," + str(self.alloc[2])
+        res = day_to_str[self.alloc[0]] + "," + slot_to_str[self.alloc[1]]
+        res += ',['
+        for t in self.targets:
+            res += t[0] + '-' + t[1] + '-' + t[2] + '|'
+        res = res[:-1] + ']'
+        res += "," + self.a_name + "(" + type_to_str[self.a_type] + ")," + self.a_inst + "," + str(self.alloc[2])
+        return res
 
     def __lt__(self, other):
         if self.a_name == other.a_name:
@@ -44,8 +51,8 @@ class Activity:
         else:
             return self.a_name < other.a_name
 
-    def prettyPrint(self):
+    def pretty_print(self):
         print("Name:", self.a_name, "\nType:", type_to_str[self.a_type],
-              "\nInstructor:", self.a_inst, "\nTarget:", self.target, "Refers To: [\n", self.refers_to, '\n]')
+              "\nInstructor:", self.a_inst, "\nTarget:", self.targets, "Refers To: [\n", self.refers_to, '\n]')
         if self.alloc != (0, 0, 0):
             print("Currently allocated in: ", day_to_str[self.alloc[0]], slot_to_str[self.alloc[1]], self.alloc[2])
