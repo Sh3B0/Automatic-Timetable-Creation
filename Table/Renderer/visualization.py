@@ -10,18 +10,17 @@ from pathlib import Path
 class Visualization:
 
     def __init__(self):
+        # current working directory
         self.cwd = Path(__file__).parent
 
-        output_path = (self.cwd / '../../output/wb.xlsx').resolve()
+        output_path = (self.cwd / '../output/wb.xlsx').resolve()
         if os.path.exists(output_path):
             os.remove(output_path)
-        else:
-            os.mkdir((self.cwd / '../../output').resolve())
 
         self.workbook = Workbook()
 
         # these year names will appear in the table
-        group_data_path = '../../data/groups_schedules'
+        group_data_path = '../data/groups_schedules'
         years = os.listdir(path=(self.cwd / group_data_path).resolve())
 
         # these relative file paths are used to fetch groups_schedules for groups_schedules
@@ -33,7 +32,7 @@ class Visualization:
         self.day_data_width = 3
 
         # these colors are used for courses
-        styles = pd.read_csv((self.cwd / '../../data/styles.csv').resolve(),
+        styles = pd.read_csv((self.cwd / '../data/styles.csv').resolve(),
                              header=None, index_col=0)
         # print(styles)
         day_colors = styles.iloc[0].to_list()
@@ -87,7 +86,7 @@ class Visualization:
 
         # save the notebook
 
-        self.workbook.save(filename=(self.cwd / '../../output/wb.xlsx').resolve())
+        self.workbook.save(filename=(self.cwd / '../output/wb.xlsx').resolve())
 
     def add_year(self, course_column, course_name, groups, palette):
 

@@ -1,4 +1,4 @@
-from globals import *
+from Table.Scheduler.Logic.src.globals import *
 
 
 def disjoint(a, b):
@@ -42,7 +42,7 @@ def generate(activities):
     """
 
     for ac in activities:
-        # print("Processing activity " + ac.a_inst)
+        # print("Renderer activity " + ac.a_inst)
 
         p = []
 

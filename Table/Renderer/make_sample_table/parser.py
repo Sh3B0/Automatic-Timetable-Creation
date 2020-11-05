@@ -59,7 +59,7 @@ def parse():
         group_name = sheet.cell(row=2, column=group_column).value
         year_name = sheet.cell(row=1, column=group_column).value
 
-        groups_data_path = f'../../../data/groups_schedules/{year_name}'
+        groups_data_path = f'../../data/groups_schedules/{year_name}'
         cur_path = Path(__file__).parent
         groups_data_path = (cur_path / groups_data_path).resolve()
 
@@ -67,3 +67,6 @@ def parse():
             os.makedirs(groups_data_path)
 
         df.to_csv((cur_path / groups_data_path / f'{group_name}.csv').resolve())
+
+
+parse()
