@@ -48,9 +48,9 @@
     M20-DS-01, M20-SE-01, M20-SB-01, M20-RO-01 (AH-AK)
 """
 
-from activity import *
-from algorithm import *
-from output import *
+from Table.Scheduler.Logic.src.activity import *
+from Table.Scheduler.Logic.src.algorithm import *
+from Table.Scheduler.Logic.src.output import *
 
 
 def prompt(a, a_id):

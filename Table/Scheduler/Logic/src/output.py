@@ -1,15 +1,14 @@
 from openpyxl import load_workbook
 from openpyxl.utils.cell import *
 from openpyxl.styles import Alignment, PatternFill
-from globals import *
-
+from Table.Scheduler.Logic.src.globals import *
 
 def csv_output(results):
     """
     Generates csv file from program output
     :param results: The list of activities to be added to file
     """
-    with open('out/Output.csv', 'w') as out:
+    with open((cwd / '../out/Output.csv').resolve(), 'w') as out:
         out.write("day,slot,targets,a_name(a_type),a_inst,room\n")
         for activity in results:
             out.write(str(activity) + '\n')
@@ -20,11 +19,11 @@ def xlsx_output(results):
     Generate xlsx file from program output
     :param results: The list of activities to be added to file
     """
-    wb = load_workbook(filename="out/Template.xlsx")
+    wb = load_workbook(filename=(cwd / "../out/Template.xlsx").resolve())
     ws = wb.active
     for activity in results:
         visualize(ws, activity)
-    wb.save("out/Result.xlsx")
+    wb.save((cwd / "../out/Result.xlsx").resolve())
 
 
 def visualize(ws, activity):

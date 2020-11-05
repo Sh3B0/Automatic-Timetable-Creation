@@ -1,4 +1,4 @@
-from globals import *
+from Table.Scheduler.Logic.src.globals import *
 
 global_id = 0
 
