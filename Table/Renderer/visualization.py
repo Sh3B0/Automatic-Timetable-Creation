@@ -198,7 +198,9 @@ class Visualization:
 
         # read groups_schedules to get indices
         df = pd.read_csv((self.cwd / path_to_sample_data).resolve(), index_col=0)
-        # with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
+
+        # more options can be specified also
+        # with pd.option_context('display.max_rows', None, 'display.max_columns', None):
         #     print(df)
 
         days = [df.columns[i] for i in range(0, len(df.columns), 3)]
