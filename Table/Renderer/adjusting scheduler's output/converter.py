@@ -26,7 +26,8 @@ def convert():
     for index, row in df.iterrows():
         group = row['targets']
         if group.find('**') != -1:
-            
+
+
             pass
 
     pass
