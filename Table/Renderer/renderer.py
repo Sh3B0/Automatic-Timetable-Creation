@@ -6,14 +6,15 @@ from openpyxl.styles import Alignment, PatternFill, Border, Side
 from openpyxl.utils import get_column_letter
 from pathlib import Path
 
+cwd = Path(__file__).parent
 
-class Visualization:
+
+class Renderer:
 
     def __init__(self):
         # current working directory
-        self.cwd = Path(__file__).parent
 
-        output_path = (self.cwd / '../output/wb.xlsx').resolve()
+        output_path = (cwd / '../output/wb.xlsx').resolve()
         if os.path.exists(output_path):
             os.remove(output_path)
 
@@ -21,18 +22,18 @@ class Visualization:
 
         # these year names will appear in the table
         group_data_path = '../data/groups_schedules'
-        years = os.listdir(path=(self.cwd / group_data_path).resolve())
+        years = os.listdir(path=(cwd / group_data_path).resolve())
 
-        # these relative file paths are used to fetch groups_schedules for groups_schedules
+        # these relative file paths are used to fetch groups_schedules
         groups = [[f'{group_data_path}/{year_dir}/{group_file}'
-                   for group_file in os.listdir((self.cwd / f'{group_data_path}/{year_dir}').resolve())]
+                   for group_file in os.listdir((cwd / f'{group_data_path}/{year_dir}').resolve())]
                   for year_dir in years]
 
         # there are 3 columns of groups_schedules for each day entry
         self.day_data_width = 3
 
         # these colors are used for courses
-        styles = pd.read_csv((self.cwd / '../data/styles.csv').resolve(),
+        styles = pd.read_csv((cwd / '../data/styles.csv').resolve(),
                              header=None, index_col=0)
         # print(styles)
         day_colors = styles.iloc[0].to_list()
@@ -42,7 +43,7 @@ class Visualization:
         # print(palettes)
         # exit(0)
 
-        # width of columns
+        # width of columns (in units)
         self.column_width = 32
 
         # there are this much time slots in a day
@@ -86,7 +87,7 @@ class Visualization:
 
         # save the notebook
 
-        self.workbook.save(filename=(self.cwd / '../output/wb.xlsx').resolve())
+        self.workbook.save(filename=(cwd / '../output/wb.xlsx').resolve())
 
     def add_year(self, course_column, course_name, groups, palette):
 
@@ -142,7 +143,7 @@ class Visualization:
         self.add_border(min_row=group_row, min_column=group_column, max_row=group_row, max_column=group_column)
 
         # read groups_schedules for group
-        df = pd.read_csv((self.cwd / f'{group_data_path}').resolve(), index_col=0)
+        df = pd.read_csv((cwd / f'{group_data_path}').resolve(), index_col=0)
 
         # iterate through df by days
         for day_index in range(self.week):
@@ -197,7 +198,7 @@ class Visualization:
         sheet = self.workbook.active
 
         # read groups_schedules to get indices
-        df = pd.read_csv((self.cwd / path_to_sample_data).resolve(), index_col=0)
+        df = pd.read_csv((cwd / path_to_sample_data).resolve(), index_col=0)
 
         # more options can be specified also
         # with pd.option_context('display.max_rows', None, 'display.max_columns', None):
@@ -300,6 +301,3 @@ class Visualization:
         sheet.cell(min_row, max_column).border = Border(right=side_style, top=side_style)
         sheet.cell(max_row, min_column).border = Border(left=side_style, bottom=side_style)
         sheet.cell(max_row, max_column).border = Border(right=side_style, bottom=side_style)
-
-
-vis = Visualization()

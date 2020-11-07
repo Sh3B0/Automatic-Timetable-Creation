@@ -1,7 +1,13 @@
-
+from Table.Renderer.renderer import Renderer
+from Table.Renderer.converter import convert
 from Table.Renderer.make_sample_table.parser import parse
-from Table.Renderer.visualization import Visualization
 
 if __name__ == '__main__':
+    # use parse to parse an existing table
     parse()
-    vis = Visualization()
+
+    # use convert to convert scheduler's output
+    # convert()
+
+    # vis renders the data
+    vis = Renderer()
