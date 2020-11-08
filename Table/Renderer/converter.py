@@ -33,10 +33,11 @@ targets = {
 # [day,slot,targets,a_name(a_type),a_inst,room] as header of dataframe
 
 import pandas as pd
-
 from pathlib import Path
 
 cwd = Path(__file__).parent
+
+import shutil
 
 def convert():
     df: pd.DataFrame = pd.read_csv((cwd / "../Scheduler/Output/Output.csv").resolve())
@@ -88,6 +89,12 @@ def convert():
 
     index = ["9:00-10:30", "10:40-12:10", "12:40-14:10", "14:20-15:50",
              "16:00-17:30", "17:40-19:10", "19:20-20:50"]
+
+    # remove old data
+    groups_schedules_path = (cwd / '../data/groups_schedules/')
+    shutil.rmtree(groups_schedules_path.resolve(), ignore_errors=True)
+    groups_schedules_path.mkdir(parents=True)
+
 
     for year_name, majors_groups in targets.items():
         for major_name, group_quantity in majors_groups.items():
