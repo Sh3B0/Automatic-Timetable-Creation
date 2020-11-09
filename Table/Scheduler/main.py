@@ -66,19 +66,17 @@ def prompt(a, a_id):
         if a[a_id].a_type not in range(1, 4):
             raise Exception("Invalid Activity type")
 
-        cnt = 1
         a[a_id].targets = []
-        while True:
-            t1 = input("Enter activity target #" + str(cnt) + ", or -1 to end (Examples: B19, M20): ")
-            if t1 == '-1':
-                break
+
+        t = int(input("Enter the number of targets for the activity"))
+        for idx in range(t):
+            t1 = input("Enter activity target #" + str(idx + 1) + " (Examples: B19, M20): ")
             t2 = input("Enter activity group: (Examples: CE, SE, 00 for not applicable, ** for all): ")
             t3 = input("Enter activity sub-group: (Examples: 01, 06, ** for all): ")
             a[a_id].targets.append((t1, t2, t3))
-            cnt += 1
         inp = int(input("Enter activity prerequisite\n"
                         "(ID of respective tutorial/lecture activity, or -1 if not applicable): "))
-        if inp != -1 and a_id in activity_by_id:
+        if inp != -1 and inp in activity_by_id:
             a[a_id].refers_to = inp
     except:
         print("Error during prompt, please make sure you entered correct activity!")
@@ -107,7 +105,7 @@ def input_mode():
     a = []
     print("Welcome to the fancy command-line GUI of Automatic Timetable Creation software:")
     while True:
-        print("\t0- Generate table with sample activity", "\t1- Create activity", "\t2- Update activity",
+        print("\t0- Generate table with sample activities", "\t1- Create activity", "\t2- Update activity",
               "\t3- Remove activity", "\t4- Check activity", "\t5- Generate schedule!",
               "\t6- Rate us xD", "\t7- Exit", sep="\n")
         # try:
