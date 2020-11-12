@@ -9,7 +9,6 @@ def csv_output(results):
     Generates csv file from program output
     :param results: The list of activities to be added to file
     """
-    print(cwd)
     with open('Output/Output.csv', 'w') as out:
         out.write("day,slot,targets,a_name(a_type),a_inst,room\n")
         for activity in results:

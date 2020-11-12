@@ -47,7 +47,6 @@
     M19-DS-01, M19-SE-01, M19-SB-01, M19-RO-01 (Z-AC)
     M20-DS-01, M20-SE-01, M20-SB-01, M20-RO-01 (AD-AG)
 """
-
 from activity import *
 from algorithm import *
 from output import *
@@ -68,7 +67,7 @@ def prompt(a, a_id):
 
         a[a_id].targets = []
 
-        t = int(input("Enter the number of targets for the activity"))
+        t = int(input("Enter the number of targets for the activity: "))
         for idx in range(t):
             t1 = input("Enter activity target #" + str(idx + 1) + " (Examples: B19, M20): ")
             t2 = input("Enter activity group: (Examples: CE, SE, 00 for not applicable, ** for all): ")
