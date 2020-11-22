@@ -1,0 +1,5 @@
+day,slot,targets,a_name(a_type),a_inst,room
+Monday,9:00-10:30,[B18-DS-**|B18-SE-**|B18-SB-**],Distributed Systems(Lec),Ahsan Kazmi,108
+Tuesday,9:00-10:30,[B19-00-**],Fundamentals of Software Engineering(Lec),Evgenii Bobrov,108
+Wednesday,9:00-10:30,[B18-**-**],Introduction to Maching Learning(Lec),Adil Khan,108
+Thursday,9:00-10:30,[B19-00-**],Operating Systems(Lec),Giancarlo Succi,108
